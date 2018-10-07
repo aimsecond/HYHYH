@@ -34,6 +34,7 @@ Haorui Jiang [@hjiang00](https://github.com/hjiang00)
 Yulin Ou [@Lavden](https://github.com/Lavden)
 
 Haowen Zhang [@aimsecond](https://github.com/aimsecond)
+
 <img src="./pics/haowen_zhang.jpg" width="250">
 
 Yichen Zhou [@sOsBiggestFan](https://github.com/sOsBiggestFan)
