@@ -33,12 +33,16 @@ Haorui Jiang [@hjiang00](https://github.com/hjiang00)
 
 <img src="./pics/Haorui_Jiang.jpg" width="250">
 
-Yulin Ou [@Lavden](https://github.com/Lavden)
-
 Haowen Zhang [@aimsecond](https://github.com/aimsecond)
 
 <img src="./pics/haowen_zhang.jpg" width="250">
 
+Yulin Ou [@Lavden](https://github.com/Lavden)
+
+<img src="./pics/yulin.jpg" width="250">
+
 Yichen Zhou [@sOsBiggestFan](https://github.com/sOsBiggestFan)
+
+<img src="./pics/yichen.jpg" width="250">
 
 Haihua Li [@haihua-sysu](https://github.com/haihua-sysu)
