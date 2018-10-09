@@ -44,5 +44,3 @@ Yulin Ou [@Lavden](https://github.com/Lavden)
 Yichen Zhou [@sOsBiggestFan](https://github.com/sOsBiggestFan)
 
 <img src="./pics/yichen.jpg" width="250">
-
-Haihua Li [@haihua-sysu](https://github.com/haihua-sysu)
