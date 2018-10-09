@@ -31,6 +31,8 @@ Things you may want to cover:
 
 Haorui Jiang [@hjiang00](https://github.com/hjiang00)
 
+<img src="./pics/Haorui_Jiang.jpg" width="250">
+
 Yulin Ou [@Lavden](https://github.com/Lavden)
 
 Haowen Zhang [@aimsecond](https://github.com/aimsecond)
