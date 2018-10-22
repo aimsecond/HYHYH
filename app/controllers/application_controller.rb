@@ -4,5 +4,5 @@ class ApplicationController < ActionController::Base
   def homepage
     render html: "Welcome to HYHYH!"
   end
-  
+  include SessionsHelper
 end
