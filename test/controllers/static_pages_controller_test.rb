@@ -11,4 +11,9 @@ class StaticPagesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "should get chatroom" do
+    get chatroom_path
+    assert_response :success
+  end
+
 end
