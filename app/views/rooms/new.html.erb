@@ -1,0 +1,59 @@
+
+<h1 align="center">Create new video room</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(@room) do |form| %>
+    <div class="field">
+      <%= form.label :admin_1 %>
+      <%= form.number_field :admin_1 %>
+    </div>
+
+    <div class="field">
+      <%= form.label :admin_2 %>
+      <%= form.number_field :admin_2 %>
+    </div>
+
+    <div class="field">
+      <%= form.label :host_id %>
+      <%= form.number_field :host_id %>
+    </div>
+
+    <div class="field">
+      <%= form.label :room_name %>
+      <%= form.text_field :room_name %>
+    </div>
+  
+    <div class="field">
+      <%= form.label :link_1 %>
+      <%= form.text_field :link_1 %>
+    </div>  
+  
+    <div class="field">
+      <%= form.label :link_2 %>
+      <%= form.text_field :link_2 %>
+    </div>  
+  
+    <div class="field">
+      <%= form.label :link_3 %>
+      <%= form.text_field :link_3 %>
+    </div>
+  
+    <div class="field">
+      <%= form.label :link_4 %>
+      <%= form.text_field :link_4 %>
+    </div>
+  
+    <div class="field">
+      <%= form.label :link_5 %>
+      <%= form.text_field :link_5 %>
+    </div>
+    
+    <hr>
+    <div class="actions">
+      <%= form.submit "Create Room" %>
+    </div>
+    
+    <% end %>
+  </div>
+</div>
