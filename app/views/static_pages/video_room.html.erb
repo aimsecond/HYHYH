@@ -18,12 +18,65 @@
     <iframe width="1176" height="662" src=<%= @room.link_1 %> frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
   </div> -->
 
-<video id="videoarea" controls="controls" poster="" src=""></video>
+<!-- <video id="videoarea" controls="controls" poster="" src=""></video> -->
 
 <ul id="playlist">
-    <li movieurl="http://html5videoformatconverter.com/data/images/happyfit2.mp4" moviesposter="http://html5videoformatconverter.com/data/images/screen.jpg">Happy Fit</li>
-    <li movieurl="http://grochtdreis.de/fuer-jsfiddle/video/sintel_trailer-480.mp4">Sintel</li>          
+    <!-- <li movieurl=<%= @room.link_1 %> moviesposter="http://html5videoformatconverter.com/data/images/screen.jpg">Happy Fit</li> -->
+    <!-- <li movieurl=<%= @room.link_1 %>Happy Fit</li> -->
+    <!-- <iframe width="1176" height="662" src=<%= @room.link_1 %> frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe> -->
+    <!-- <div style="width:100%;height:100%;width: 820px; height: 461.25px; float: none; clear: both; margin: 2px auto;">
+        < movieurl="http://www.youtube.com/v/GlIzuTQGgzs?version=3&amp;hl=en_US&amp;rel=0&amp;autohide=1&amp;autoplay=1" wmode="transparent" type="application/x-shockwave-flash" width="100%" height="100%" allowfullscreen="true" title="Adobe Flash Player">
+      </div> -->
+    <!-- <li movieurl="http://grochtdreis.de/fuer-jsfiddle/video/sintel_trailer-480.mp4">Sintel</li>          
     <li movieurl="http://html5example.net/static/video/html5_Video_VP8.webm">Resident Evil</li>      
-    <li movieurl="http://www.ioncannon.net/examples/vp8-webm/big_buck_bunny_480p.webm">Big Buck Bunny</li>
+    <li movieurl="http://www.ioncannon.net/examples/vp8-webm/big_buck_bunny_480p.webm">Big Buck Bunny</li> -->
+
+    <div class="vid-container">
+        <iframe id="vid_frame" src=<%= @room.link_1 %> width="560" height="315" frameborder="0"></iframe>
+    </div>
+    <div class="vid-item" onClick="".src=<%= @room.link_1 %>>
+        <div class="thumb">
+            <img src="http://img.youtube.com/vi/lex6KJM3eWs/0.jpg" alt="" />
+            <!-- <img src="http://img.youtube.com/vi/yH0JtCfGUb4/0.jpg" alt="" /> -->
+        </div>
+        <div class="desc">
+            Video 1
+        </div>
+    </div>
+
+    <div class="vid-item" onClick="document.getElementById('vid_frame').src='https://www.youtube.com/embed/aadi9gJKylE'">
+        <div class="thumb">
+            <img src="http://img.youtube.com/vi/aadi9gJKylE/0.jpg" alt="" />
+            <!-- <img src="http://img.youtube.com/vi/4r8R02xIIyA/0.jpg" alt="" /> -->
+        </div>
+        <div class="desc">
+            Video 2
+        </div>
+    </div>
+
+    <div class="vid-item" onClick="document.getElementById('vid_frame').src= 'https://www.youtube.com/embed/JqAhrVb9rIw'" %>>
+        <div class="thumb">
+            <img src="http://img.youtube.com/vi/JqAhrVb9rIw/0.jpg" alt="" />
+            <!-- <img src="http://img.youtube.com/vi/Z8FP75ADfmI/0.jpg" alt="" /> -->
+        </div>
+        <div class="desc">
+            Video 3
+        </div>
+    </div>
+
+    <div class="vid-item" onClick="document.getElementById('vid_frame').src= 'https://www.youtube.com/embed/h1NRrWntlxE'" %>>
+        <div class="thumb">
+            <img src="http://img.youtube.com/vi/h1NRrWntlxE/0.jpg" alt="" />
+            <!-- <img src="http://img.youtube.com/vi/AXvLWENEYN0/0.jpg" alt="" /> -->
+        </div>
+        <div class="desc">
+            Video 4
+        </div>
+    </div>
+    <!-- <div class="vid-item" onClick="">
+            <img src="images/add_new.jpeg" alt="" />
+    </div> -->
+
+</div>
 </ul>
 
