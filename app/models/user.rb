@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  #has_many :messages 
+  has_many :messages 
   validates :username, presence: true, length: { maximum: 30 }, 
                        uniqueness: {case_sensitive: false}
           
