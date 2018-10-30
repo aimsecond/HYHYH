@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_29_091712) do
+ActiveRecord::Schema.define(version: 2018_10_30_214109) do
 
   create_table "messages", force: :cascade do |t|
     t.text "content"
@@ -18,17 +18,6 @@ ActiveRecord::Schema.define(version: 2018_10_29_091712) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_messages_on_user_id"
-  end
-
-  create_table "playlists", force: :cascade do |t|
-    t.integer "room_id"
-    t.string "link_1"
-    t.string "link_2"
-    t.string "link_3"
-    t.string "link_4"
-    t.string "link_5"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "rooms", force: :cascade do |t|
