@@ -1,1 +1,8 @@
-<%= @user.username %>, <%= @user.room_id ||= 0 %>
+<% provide(:title, "Sync Room | My Profile") %>
+  <h1>
+    <p>My User name is <%= @user.username %></p>
+    <p>My Room ID is <%= @user.room_id ||= 0 %></p>
+    <p>My ID is <%= @user.id ||= 0 %></p>
+  </h1>
+
+  
