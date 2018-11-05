@@ -5,8 +5,14 @@ class RoomsController < ApplicationController
   
   def create
     @room = Room.new(room_params)
-    if @room.save
-      redirect_to video_room_path(@room.id)
+    if User.exists?(id: @room.host_id)
+      if @room.save
+        @user = User.find(room_params[:host_id])
+        @user.update_attribute('room_id', @room.id)
+        redirect_to video_room_path(@room.id)
+      else
+        render 'new'
+      end
     else
       render 'new'
     end
