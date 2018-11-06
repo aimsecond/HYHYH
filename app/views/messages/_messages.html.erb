@@ -1,6 +1,6 @@
 <div id="messages" class="messages">
   <div id="messages-table" class="messages-table">
-    <% if @video.try(:any?) %>
+    <% if @messages.try(:any?) %>
       <%= render @messages %>
     <% end %>
   </div>
