@@ -1,5 +1,16 @@
-.message-wr{
-  height: 75vh;
+#container {
+  display: flex;
+}
+
+#player {
+  justify-content: flex-start;
+  align-items: stretch;
+}
+#message-wr{
+  justify-content: flex-start;
+  align-items: center;
+  height: 400px;
+  width: 40%;
   margin: auto;
 }
 .messages{
