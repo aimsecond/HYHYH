@@ -89,7 +89,7 @@ test:
   password: superADD100
   timeout: 5000
 
-  production:
+production:
   #Revised for AWS
   adapter: postgresql
   database: <%= ENV['RDS_DB_NAME'] %>
