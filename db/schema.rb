@@ -12,7 +12,10 @@
 
 ActiveRecord::Schema.define(version: 2018_11_06_073258) do
 
-  create_table "messages", force: :cascade do |t|
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "messages", id: :serial, force: :cascade do |t|
     t.text "content"
     t.integer "user_id"
     t.datetime "created_at", null: false
@@ -45,4 +48,5 @@ ActiveRecord::Schema.define(version: 2018_11_06_073258) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
+  add_foreign_key "messages", "users"
 end
