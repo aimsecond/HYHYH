@@ -29,6 +29,24 @@ class UsersController < ApplicationController
 		@user.update_attribute('email', params[:email])
 		redirect_to @user
 	end
+	
+	def join
+	  @user = current_user
+	  parameter = params[:search]
+		if Room.exists?(id: parameter)
+    		@user.update_attribute('room_id', parameter)
+    		redirect_to video_room_path(@user.room_id)
+    	else
+      		flash.now[:danger] = "Invalid Room ID"
+		end
+	end
+	
+	def exit
+		@user = current_user
+		@user.update_attribute('room_id', nil)
+		flash[:success] = "Room exited"
+		redirect_to root_path
+	end
 
 private
 

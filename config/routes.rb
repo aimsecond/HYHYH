@@ -8,7 +8,12 @@ Rails.application.routes.draw do
   get    '/login',   to: 'sessions#new'
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
-  resources :users
+  resources :users do
+    member do
+      post :exit
+      post :join
+    end
+  end
   
   get '/videorooms/create', to:'rooms#new'
   get '/videorooms/:id', to: 'static_pages#video_room', as: 'video_room'

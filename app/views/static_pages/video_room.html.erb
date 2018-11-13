@@ -78,5 +78,12 @@
     </div> -->
 
 </div>
+    <div class= "btn-group-vertical">
+    <% if current_user.id == @room.host_id %>
+        <%= link_to "Delete Room", @room, method: :delete, class: "btn btn-primary btn-lg btn-block btn-color center" %>
+    <% else %>
+        <%= link_to "Exit Room", exit_user_path, method: :post, class: "btn btn-primary btn-lg btn-block btn-color center" %>
+    <% end %>
+     </div>
 </ul>
 

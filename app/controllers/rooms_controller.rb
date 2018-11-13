@@ -18,6 +18,15 @@ class RoomsController < ApplicationController
     end
   end
   
+  def destroy
+    Room.find(params[:id]).destroy
+    @user = current_user
+    @user.update_attribute('room_id', nil)
+    flash[:success] = "Room deleted"
+    redirect_to root_path
+  end
+  
+  
   private
     def room_params
       params.require(:room).permit(:admin_1, :admin_2, :host_id, :room_name, :link_1, :link_2, :link_3, :link_4, :link_5)
