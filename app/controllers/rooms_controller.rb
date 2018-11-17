@@ -21,7 +21,9 @@ class RoomsController < ApplicationController
   def destroy
     Room.find(params[:id]).destroy
     @user = current_user
+    @delete_id = @user.room_id
     @user.update_attribute('room_id', nil)
+    User.where(:room_id => @delete_id).update_all(room_id: nil)
     flash[:success] = "Room deleted"
     redirect_to root_path
   end
