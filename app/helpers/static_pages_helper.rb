@@ -1,9 +1,11 @@
 module StaticPagesHelper
 
     def convert_link(link)
-        if link.include? 'watch?v='
-            'https://www.youtube.com/embed/' + link.split('watch?v=')[1]
-        end 
+        unless link.to_s.empty?
+            if link.include? 'watch?v='
+                'https://www.youtube.com/embed/' + link.split('watch?v=')[1]
+            end 
+        end
     end
 
     def get_thumbnail(link)

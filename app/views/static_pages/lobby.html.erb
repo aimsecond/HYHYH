@@ -1,3 +1,22 @@
 <% provide(:title, "Sync Room | Lobby") %>
 <h1>Rooms Lobby</h1>
 <p>Here you can join any rooms that you are interested!</p>
+<div class="container">
+    <% @all_rooms.each_slice(3) do |array_of_3_items|%>
+    <div class="row">
+        <% array_of_3_items.each do |room|%>
+        <div class="col-md-4">
+            <div class="panel panel-default " onClick="window.location = '/videorooms/<%= room.id %>'">
+                <div class="panel-body">
+                    <h4 class="panel-title">
+                        <%= room.room_name %>
+                    </h4>
+                    <img class="img-responsive" src=<%=get_thumbnail(room.link_1)%> alt="" />
+                </div>
+            </div>
+        </div>
+        <% end %>
+    </div>
+</div>
+<% end %>
+</div>

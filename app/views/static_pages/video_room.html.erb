@@ -12,7 +12,7 @@
         </div>
     </div>
 
-    <% unless @room.link_2.empty? %>
+    <% unless @room.link_2.to_s.empty? %>
     <div class="vid-item" onClick="setSrc(2);" src=<%=@room.link_2 %>>
         <div class="thumb">
             <img src=<%=get_thumbnail(@room.link_2)%> alt="" />
@@ -23,7 +23,7 @@
     </div>
     <% end %>
 
-    <% unless @room.link_3.empty? %>
+    <% unless @room.link_3.to_s.empty? %>
     <div class="vid-item" onClick="setSrc(3);" src=<%=@room.link_3 %>>
         <div class="thumb">
             <img src=<%=get_thumbnail(@room.link_3)%> alt="" />
@@ -34,7 +34,7 @@
     </div>
     <% end %>
 
-    <% unless @room.link_4.empty? %>
+    <% unless @room.link_4.to_s.empty? %>
     <div class="vid-item" onClick="setSrc(4);" src=<%=@room.link_4 %>>
         <div class="thumb">
             <img src=<%=get_thumbnail(@room.link_4)%> alt="" />
@@ -45,7 +45,7 @@
     </div>
     <% end %>
 
-    <% unless @room.link_5.empty? %>
+    <% unless @room.link_5.to_s.empty? %>
     <div class="vid-item" onClick="setSrc(5);" src=<%=@room.link_5 %>>
         <div class="thumb">
             <img src=<%=get_thumbnail(@room.link_5)%> alt="" />
