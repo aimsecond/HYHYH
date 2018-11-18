@@ -15,5 +15,6 @@ App.room = App.cable.subscriptions.create "RoomChannel",
         $('#player-status').text("playing")
       if data.content is "$pulse$"
         $('#player-status').text("pulsed")
-      
-      
+     
+  send_message: (room_id, message) ->
+    @perform "send_message", {room_id: room_id, content: message}
