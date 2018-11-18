@@ -35,6 +35,8 @@ class UsersController < ApplicationController
 	  parameter = params[:search]
 		if Room.exists?(id: parameter)
     		@user.update_attribute('room_id', parameter)
+    		@active_user = ActiveUser.find_by_room_id(parameter)
+    		@active_user.increment!(:user_count)
     		redirect_to video_room_path(@user.room_id)
     	else
       		flash.now[:danger] = "Invalid Room ID"
@@ -43,7 +45,10 @@ class UsersController < ApplicationController
 	
 	def exit
 		@user = current_user
+		exit_room_id = @user.room_id
 		@user.update_attribute('room_id', nil)
+		@active_user = ActiveUser.find_by_room_id(exit_room_id)
+    @active_user.decrement!(:user_count)
 		flash[:success] = "Room exited"
 		redirect_to root_path
 	end

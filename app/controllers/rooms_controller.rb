@@ -9,6 +9,7 @@ class RoomsController < ApplicationController
       if @room.save
         @user = User.find(room_params[:host_id])
         @user.update_attribute('room_id', @room.id)
+        ActiveUser.create(room_id: @room.id, user_count: 1)
         redirect_to video_room_path(@room.id)
       else
         render 'new'
@@ -21,7 +22,9 @@ class RoomsController < ApplicationController
   def destroy
     Room.find(params[:id]).destroy
     @user = current_user
+    @delete_id = @user.room_id
     @user.update_attribute('room_id', nil)
+    User.where(:room_id => @delete_id).update_all(room_id: nil)
     flash[:success] = "Room deleted"
     redirect_to root_path
   end

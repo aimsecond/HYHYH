@@ -6,10 +6,12 @@
     <div class="row">
         <% array_of_3_items.each do |room|%>
         <div class="col-md-4">
-            <div class="panel panel-default " onClick="window.location = '/videorooms/<%= room.id %>'">
+            <div class="panel panel-default ">
                 <div class="panel-body">
                     <h4 class="panel-title">
-                        <%= room.room_name %>
+                        <p><%= room.room_name %></p>
+                        <p>Room ID: <%= room.id %></p>
+                        <p>Active User: <%= User.where(room_id: room.id ).count %></p>
                     </h4>
                     <img class="img-responsive" src=<%=get_thumbnail(room.link_1)%> alt="" />
                 </div>

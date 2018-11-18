@@ -4,6 +4,7 @@ class Room < ApplicationRecord
   validates :host_id, presence: true
   validate :valid_url
   has_many :users
+  has_one :active_user, dependent: :destroy
 end
 
 private 
