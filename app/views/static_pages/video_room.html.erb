@@ -1,89 +1,83 @@
-<!-- <nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse">           
-      </button>
-      <a class="navbar-brand" href="#">Back</a>
-    </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-    </div>
-  </div>
-</nav>
-
-<div class="jumbotron">
-  <div class="container text-center">
-    <h1><%= @room.room_name %></h1>      
-    <h4 style="color:grey;">host:<%= @room.host_id%></h4>
-    <hr>
-    <iframe width="1176" height="662" src=<%= @room.link_1 %> frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-  </div> -->
-
-<!-- <video id="videoarea" controls="controls" poster="" src=""></video> -->
-
 <ul id="playlist">
-    <!-- <li movieurl=<%= @room.link_1 %> moviesposter="http://html5videoformatconverter.com/data/images/screen.jpg">Happy Fit</li> -->
-    <!-- <li movieurl=<%= @room.link_1 %>Happy Fit</li> -->
-    <!-- <iframe width="1176" height="662" src=<%= @room.link_1 %> frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe> -->
-    <!-- <div style="width:100%;height:100%;width: 820px; height: 461.25px; float: none; clear: both; margin: 2px auto;">
-        < movieurl="http://www.youtube.com/v/GlIzuTQGgzs?version=3&amp;hl=en_US&amp;rel=0&amp;autohide=1&amp;autoplay=1" wmode="transparent" type="application/x-shockwave-flash" width="100%" height="100%" allowfullscreen="true" title="Adobe Flash Player">
-      </div> -->
-    <!-- <li movieurl="http://grochtdreis.de/fuer-jsfiddle/video/sintel_trailer-480.mp4">Sintel</li>          
-    <li movieurl="http://html5example.net/static/video/html5_Video_VP8.webm">Resident Evil</li>      
-    <li movieurl="http://www.ioncannon.net/examples/vp8-webm/big_buck_bunny_480p.webm">Big Buck Bunny</li> -->
-
-    <div class="vid-container">
-        <iframe id="vid_frame" src=<%= @room.link_1 %> width="560" height="315" frameborder="0"></iframe>
+    <div class="container">
+        <iframe width="800" height="500" id="vid_frame" src='<%= convert_link(@room.link_1) %>' frameborder="0"
+            allowfullscreen="allowfullscreen"></iframe>
     </div>
-    <div class="vid-item" onClick="".src=<%= @room.link_1 %>>
+    <div class="vid-item" onClick="setSrc(1);" src=<%=@room.link_1 %>>
         <div class="thumb">
-            <img src="http://img.youtube.com/vi/lex6KJM3eWs/0.jpg" alt="" />
-            <!-- <img src="http://img.youtube.com/vi/yH0JtCfGUb4/0.jpg" alt="" /> -->
+            <img src=<%=get_thumbnail(@room.link_1)%> alt="" />
         </div>
         <div class="desc">
-            Video 1
+            <%= get_title(@room.link_1) %>
         </div>
     </div>
 
-    <div class="vid-item" onClick="document.getElementById('vid_frame').src='https://www.youtube.com/embed/aadi9gJKylE'">
+    <% unless @room.link_2.to_s.empty? %>
+    <div class="vid-item" onClick="setSrc(2);" src=<%=@room.link_2 %>>
         <div class="thumb">
-            <img src="http://img.youtube.com/vi/aadi9gJKylE/0.jpg" alt="" />
-            <!-- <img src="http://img.youtube.com/vi/4r8R02xIIyA/0.jpg" alt="" /> -->
+            <img src=<%=get_thumbnail(@room.link_2)%> alt="" />
         </div>
         <div class="desc">
-            Video 2
+            <%= get_title(@room.link_2) %>
         </div>
     </div>
-
-    <div class="vid-item" onClick="document.getElementById('vid_frame').src= 'https://www.youtube.com/embed/JqAhrVb9rIw'" >
-        <div class="thumb">
-            <img src="http://img.youtube.com/vi/JqAhrVb9rIw/0.jpg" alt="" />
-            <!-- <img src="http://img.youtube.com/vi/Z8FP75ADfmI/0.jpg" alt="" /> -->
-        </div>
-        <div class="desc">
-            Video 3
-        </div>
-    </div>
-
-    <div class="vid-item" onClick="document.getElementById('vid_frame').src= 'https://www.youtube.com/embed/h1NRrWntlxE'" >
-        <div class="thumb">
-            <img src="http://img.youtube.com/vi/h1NRrWntlxE/0.jpg" alt="" />
-            <!-- <img src="http://img.youtube.com/vi/AXvLWENEYN0/0.jpg" alt="" /> -->
-        </div>
-        <div class="desc">
-            Video 4
-        </div>
-    </div>
-    <!-- <div class="vid-item" onClick="">
-            <img src="images/add_new.jpeg" alt="" />
-    </div> -->
-
-</div>
-    <div class= "btn-group-vertical">
-    <% if current_user.id == @room.host_id %>
-        <%= link_to "Delete Room", @room, method: :delete, class: "btn btn-primary btn-lg btn-block btn-color center" %>
-    <% else %>
-        <%= link_to "Exit Room", exit_user_path, method: :post, class: "btn btn-primary btn-lg btn-block btn-color center" %>
     <% end %>
-     </div>
+
+    <% unless @room.link_3.to_s.empty? %>
+    <div class="vid-item" onClick="setSrc(3);" src=<%=@room.link_3 %>>
+        <div class="thumb">
+            <img src=<%=get_thumbnail(@room.link_3)%> alt="" />
+        </div>
+        <div class="desc">
+            <%= get_title(@room.link_3) %>
+        </div>
+    </div>
+    <% end %>
+
+    <% unless @room.link_4.to_s.empty? %>
+    <div class="vid-item" onClick="setSrc(4);" src=<%=@room.link_4 %>>
+        <div class="thumb">
+            <img src=<%=get_thumbnail(@room.link_4)%> alt="" />
+        </div>
+        <div class="desc">
+            <%= get_title(@room.link_4) %>
+        </div>
+    </div>
+    <% end %>
+
+    <% unless @room.link_5.to_s.empty? %>
+    <div class="vid-item" onClick="setSrc(5);" src=<%=@room.link_5 %>>
+        <div class="thumb">
+            <img src=<%=get_thumbnail(@room.link_5)%> alt="" />
+        </div>
+        <div class="desc">
+            <%= get_title(@room.link_5) %>
+        </div>
+    </div>
+    <% end %>
+
+    </div>
+    <div class="btn-group-vertical">
+        <% if current_user.id == @room.host_id %>
+        <%= link_to "Delete Room", @room, method: :delete, class: "btn btn-primary btn-lg btn-block btn-color center" %>
+        <% else %>
+        <%= link_to "Exit Room", exit_user_path, method: :post, class: "btn btn-primary btn-lg btn-block btn-color center" %>
+        <% end %>
+    </div>
 </ul>
 
+<script type="text/javascript">
+    function setSrc(option) {
+        if (option == 1) {
+            document.getElementById('vid_frame').src = '<%= convert_link(@room.link_1) %>';
+        } else if (option == 2) {
+            document.getElementById('vid_frame').src = '<%= convert_link(@room.link_2) %>';
+        } else if (option == 3) {
+            document.getElementById('vid_frame').src = '<%= convert_link(@room.link_3) %>';
+        } else if (option == 4) {
+            document.getElementById('vid_frame').src = '<%= convert_link(@room.link_4) %>';
+        } else if (option == 5) {
+            document.getElementById('vid_frame').src = '<%= convert_link(@room.link_5) %>';
+        }
+    }
+</script>
