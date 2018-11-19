@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html>
   <body>
+    <div data-behavior='room-info' data-room-id='<%= current_user.room.id %>'>
+      <h4>
+        room_name:<%= current_user.room.room_name %>      
+        host:<%= current_user.room.host_id%>
+      </h4>
+    </div> 
     <div id="container">
       <div id="player"></div>
       <div id="message-wr">
