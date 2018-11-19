@@ -3,4 +3,5 @@ class Room < ApplicationRecord
   validates :room_name, presence: true, length: { maximum: 30 }
   validates :host_id, presence: true
   has_many :users
+  has_many :messages, dependent: :destroy
 end
