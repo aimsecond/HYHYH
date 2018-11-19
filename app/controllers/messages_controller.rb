@@ -1,6 +1,6 @@
 class MessagesController < ApplicationController
   before_action :logged_in_user
-  before_action :validate_room
+  # before_action :validate_room
   before_action :get_messages
 
   def index
@@ -8,9 +8,8 @@ class MessagesController < ApplicationController
 
   def create
     message = current_user.messages.build(message_params)
-    if message.save
-      MessageRelayJob.perform_later(message)
-    end
+    message.room = current_user.room
+    message.save
   end
 
   private
@@ -21,7 +20,7 @@ class MessagesController < ApplicationController
     end
 
     def validate_room
-      @room = Room.find(params[:room_id])
+      @room = Room.find(params[:id])
     end
 
     def message_params
