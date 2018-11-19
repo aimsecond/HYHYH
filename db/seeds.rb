@@ -5,4 +5,4 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-Room.create(host_id:1,room_name:"WCS Global Finals",link_1:"https://www.youtube.com/embed/JmW-3dHjOjQ")
+Room.create(host_id:1,room_name:"WCS Global Finals",link_1:"https://www.youtube.com/watch?v=JmW-3dHjOjQ")

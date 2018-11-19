@@ -3,7 +3,7 @@
 
 # #   Ensure the SQLite 3 gem is defined in your Gemfile
 #   gem 'sqlite3'
-
+#
 default: &default
   adapter: sqlite3
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
@@ -89,12 +89,12 @@ production:
 #   password: superADD100
 #   timeout: 5000
 
-production:
-  #Revised for AWS
-  adapter: postgresql
-  database: <%= ENV['RDS_DB_NAME'] %>
-  encoding: unicode
-  host: <%= ENV['RDS_HOSTNAME'] %>
-  password: <%= ENV['RDS_PASSWORD'] %>
-  port: <%= ENV['RDS_PORT'] %>
-  username: <%= ENV['RDS_USERNAME'] %>
+# production:
+#   #Revised for AWS
+#   adapter: postgresql
+#   database: <%= ENV['RDS_DB_NAME'] %>
+#   encoding: unicode
+#   host: <%= ENV['RDS_HOSTNAME'] %>
+#   password: <%= ENV['RDS_PASSWORD'] %>
+#   port: <%= ENV['RDS_PORT'] %>
+#   username: <%= ENV['RDS_USERNAME'] %>

@@ -14,5 +14,4 @@ $(document).on "turbolinks:load", ->
     content = $("#message_content")
 
     App.room.send_message(room_id, content.val())
-    console.log(room_id, content.val())
     content.val("")
