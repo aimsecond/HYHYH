@@ -1,5 +1,4 @@
 module StaticPagesHelper
-
     def convert_link(link)
         unless link.to_s.empty?
             if link.include? 'watch?v='
