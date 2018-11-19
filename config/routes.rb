@@ -18,7 +18,13 @@ Rails.application.routes.draw do
   get '/videorooms/create', to:'rooms#new'
   get '/videorooms/:id', to: 'static_pages#video_room', as: 'video_room'
   post '/videorooms/:id', to: 'rooms#create', as: 'create_room'
-  resources :rooms
+  resources :rooms do
+    collection do
+      get :recent
+      get :oldest
+      get :mostUser
+    end
+  end
   resources :messages
   mount ActionCable.server, at: '/cable'
 end

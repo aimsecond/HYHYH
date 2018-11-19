@@ -2,12 +2,13 @@
     <h1>Rooms Lobby</h1>
     <p>Here you can join any rooms that you are interested!</p>
     <div class= "btn-group-justified">
-        <%= link_to "Recent", signup_path, class: "btn btn-primary btn-lg btn-block btn-color" %>
-        <%= link_to "Oldest", signup_path, class: "btn btn-primary btn-lg btn-block btn-color" %>
+        <%= link_to "Recent", recent_rooms_path, class: "btn btn-primary btn-lg btn-block btn-color" %>
+        <%= link_to "Oldest", oldest_rooms_path, class: "btn btn-primary btn-lg btn-block btn-color" %>
+        <%= link_to "Most User", mostUser_rooms_path, class: "btn btn-primary btn-lg btn-block btn-color" %>
     </div>
     
     <div class="container">
-        <% @all_rooms.each_slice(3) do |array_of_3_items|%>
+        <% @rooms.each_slice(3) do |array_of_3_items|%>
         <div class="row">
             <% array_of_3_items.each do |room|%>
             <div class="col-md-4">

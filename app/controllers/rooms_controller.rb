@@ -3,6 +3,10 @@ class RoomsController < ApplicationController
     @room = Room.new
   end
   
+  def index
+    @rooms = Room.all
+  end
+
   def create
     @room = Room.new(room_params)
     if User.exists?(id: @room.host_id)
@@ -29,6 +33,20 @@ class RoomsController < ApplicationController
     redirect_to root_path
   end
   
+  def oldest
+    @rooms = Room.oldest
+    render action: :index
+  end
+  
+  def recent
+    @rooms = Room.recent
+    render action: :index
+  end
+  
+  def mostUser
+    @rooms = Room.mostUser
+    render action: :index
+  end
   
   private
     def room_params
