@@ -10,13 +10,12 @@
 		<server host="0.0.0.0" port="3000" type="tcp"></server>
 	</servers>
  	<load>
-		<arrivalphase phase="1" duration="1" unit="second">
-			<users arrivalrate="1" unit="second"/>
+		<arrivalphase phase="1" duration="120" unit="second">
+			<users arrivalrate="5" unit="second"/>
 		</arrivalphase>
 	</load>
  	<options>
 		<option name="global_ack_timeout" value="2000"/>
-		<option name="ports_range" min="3001" max="8192"/>
 	</options>
  	<sessions>
 		<!-- Register as a new user. -->
@@ -65,8 +64,13 @@
 				<http url="/users/%%_userid%%"
 					version="1.1"
 					method="PATCH"
-					contents="authenticity_token=%%_escaped_authenticity_token%%&amp;username=%%_username%%&amp;avatar=http://www.github.com&amp;originalpassword=%%_password%%;&amp;email=%%_username%%@gmail.com" 
+					contents="authenticity_token=%%_escaped_authenticity_token%%&amp;username=%%_username%%&amp;avatar=https://cdn.newsapi.com.au/image/v1/9fdbf585d17c95f7a31ccacdb6466af9&amp;originalpassword=%%_password%%;&amp;email=%%_username%%@gmail.com" 
 					content_type="application/x-www-form-urlencoded"/>
+			</request>
+
+			<!-- Logout -->
+			<request subst="true">
+				<http url="/logout" method="DELETE" />
 			</request>
 		</session>
 	</sessions>
