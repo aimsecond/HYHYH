@@ -34,7 +34,7 @@
                   </li>
                 <% else %>
                   <li><%= link_to "My Room", new_room_path %></li>
-                  <li><%= link_to "Lobby",    lobby_path %></li>
+                  <li><%= link_to "Lobby",    rooms_path %></li>
                   <li>
                     <%= form_tag(join_user_path(current_user), :method => "post", class: 'navbar-form navbar-left') do %>  
                       <div class="input-group">  
