@@ -11,7 +11,7 @@ class RoomChannel < ApplicationCable::Channel
 
   def send_message(data)
     @room = Room.find(data["room_id"])
-    message   = @room.messages.create(content: data["content"], user: current_user)
+    message = @room.messages.create(content: data["content"], user: current_user)
     MessageRelayJob.perform_later(message)
   end
 end

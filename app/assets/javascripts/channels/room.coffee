@@ -7,17 +7,27 @@ App.room = App.cable.subscriptions.create "RoomChannel",
 
   received: (data) ->
     # Called when there's incoming data on the websocket for this channel
-    unless data.content.blank?
+    console.log(data)
+    print_message = (username, content) ->
       msgTable = $('#messages-table')
       msgTable.append '<div class="message">' +
-        '<div class="message-user">' + data.username + ":" + '</div>' +
-        '<div class="message-content">' + data.content + '</div>' + '</div>'
+        '<div class="message-user">' + username + ":" + '</div>' +
+        '<div class="message-content">' + content + '</div>' + '</div>'
       offset = document.getElementById("messages-table").lastElementChild.offsetTop;
       document.getElementById("messages").scrollTop = offset;
-      if data.content is "$play$"
-        $('#player-status').text("playing")
-      if data.content is "$pulse$"
-        $('#player-status').text("pulsed")
+    unless data.content.blank?
+      if data.user_id is $("[data-behavior='room-info']").data("host-id")
+        if data.content is "$play$"
+          $('#player-status').text("playing")
+        else if data.content is "$pulse$"
+          $('#player-status').text("pulsed")
+        else
+          print_message(data.username, data.content)
+      else
+        print_message(data.username, data.content)
+
+
+
      
   send_message: (room_id, message) ->
     @perform "send_message", {room_id: room_id, content: message}

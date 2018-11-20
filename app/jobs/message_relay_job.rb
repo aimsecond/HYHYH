@@ -4,8 +4,8 @@ class MessageRelayJob < ApplicationJob
     def perform(message)
       ActionCable.server.broadcast "rooms:#{message.room.id}", {
         username: message.user.username,
-        content: message.content,
-        room_id: message.room.id
+        user_id: message.user.id,
+        content: message.content
       }
     end
 end
