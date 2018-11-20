@@ -16,16 +16,19 @@ Rails.application.routes.draw do
   end
   
   # get '/rooms/create', to:'rooms#new'
-  get '/videorooms/:id', to: 'messages#index', as: 'video_room'
+  # get '/videorooms/:id', to: 'messages#index', as: 'video_room'
+  get '/videorooms/:id', to: 'static_pages#video_room', as: 'video_room'
   # post '/rooms/:id', to: 'rooms#create', as: 'create_room'
   resources :rooms do
     resource :users
     resources :messages
+    collection do
+      get :recent
+      get :oldest
+      get :mostUser
+    end
   end
-  # get '/videorooms/create', to:'rooms#new'
-  # get '/videorooms/:id', to: 'static_pages#video_room', as: 'video_room'
-  # post '/videorooms/:id', to: 'rooms#create', as: 'create_room'
-  resources :rooms
+
   resources :messages
   mount ActionCable.server, at: '/cable'
 end
