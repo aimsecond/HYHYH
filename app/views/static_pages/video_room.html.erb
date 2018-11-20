@@ -7,25 +7,28 @@
             <div id="player"></div>
         </div>
         <div data-behavior='room-info' data-room-id='<%= @room.id %>' data-host-id='<%= @room.host_id%>'>
-            <div class="alert alert-light" style="margin-bottom:0">    
-                <h4 class="my-text">
-                    <span>[room_name:<%= @room.room_name%>  </span>    
-                    <span>host:<%= @room.host_id %>]  </span>
-                <h4>
-                <h4 id="playback-info" class="my-text">
-                    <span>status:</span>
-                    <span id="player-status">pulsed</span>
-                    <b id="current-time"></b>
-                    <span> / </span>
-                    <b id="duration"></b>
-                </h4>
-                <% if current_user.id == @room.host_id %>
-                <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-                <div class="d-inline">
-                <span id="play" class="material-icons">play_arrow</span>
-                <span id="pause" class="material-icons">pause</span>
+            <div class="alert alert-light" style="margin-bottom:0; padding-left:0">
+                <div class="same-line"> 
+                    <h4 class="same-line-left">
+                        <span>[room_name:<%= @room.room_name%>  </span>    
+                        <span>host:<%= @room.host_id %>]  </span>
+                    <h4>
+                    <h4 id="playback-info" class="same-line-right">
+                        <span>status:</span>
+                        <span id="player-status">paused</span>
+                        <b id="current-time"></b>
+                        <span> / </span>
+                        <b id="duration"></b>
+                    </h4>
                 </div>
-                <input type="range" id="progress-bar" class="d-inline" value="0">
+                <% if current_user.id == @room.host_id %>
+                    <div class="same-line">
+                        <div class="same-line-left">
+                            <span id="play" type="button" class="btn btn-secondary">play</span>
+                            <span id="pause" type="button" class="btn btn-secondary">pause</span>
+                        </div>
+                        <input class="same-line-right" type="range" value="0">
+                    </div>
                 <% end %>
             </div> 
         </div> 
@@ -135,7 +138,7 @@ function initialize(){
       if($('#player-status').text() === "playing") {
         player.playVideo();
       }
-      if($('#player-status').text() === "pulsed") {
+      if($('#player-status').text() === "paused") {
         player.pauseVideo();
       }
   }, 1000)
@@ -178,8 +181,8 @@ $('#play').on('click', function () {
 });
 $('#pause').on('click', function () {
   player.pauseVideo();
-  $('#player-status').text("pulsed")
-  App.room.send_message(<%=@room.id%>,"$pulse$");
+  $('#player-status').text("paused")
+  App.room.send_message(<%=@room.id%>,"$pause$");
 });
 
 function setSrc(option) {

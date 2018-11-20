@@ -1,6 +1,6 @@
 <div class="message-input">
   <%= form_for(@message) do |f| %>
-    <%= f.text_area :content %>
+    <%= f.text_area :content, autofocus: true, placeholder: 'Chat here~ Press \'enter\' to submit'%>
     <%= f.submit "Send", data: { disable_with: false }, id: "sumbit-btn", class: "btn btn-default" %>
   <% end %>
 </div>

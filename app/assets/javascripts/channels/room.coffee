@@ -18,8 +18,8 @@ App.room = App.cable.subscriptions.create "RoomChannel",
       if data.user_id is $("[data-behavior='room-info']").data("host-id")
         if data.content is "$play$"
           $('#player-status').text("playing")
-        else if data.content is "$pulse$"
-          $('#player-status').text("pulsed")
+        else if data.content is "$pause$"
+          $('#player-status').text("paused")
         else if data.content.substring(0,6) is "$time$"
           player.seekTo(data.content.substr(6))
         else

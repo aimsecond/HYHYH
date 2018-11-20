@@ -3,11 +3,13 @@
 }
 
 #video_contorl {
-  flex-grow: 5;
+  flex-grow: 4;
 }
 
 #message-wr{
   flex-grow: 1;
+  flex-basis: auto;
+  min-width: 100px;
 }
 
 #playback-info{
@@ -38,4 +40,15 @@
 }
 .message-content{
   width: 100%;
+}
+.same-line{
+  display: flex;
+  flex-direction: row;
+}
+.same-line-left{
+  flex: none;
+  margin-right: 30px;
+}
+.same-line-right{
+  flex-grow: 1;
 }
