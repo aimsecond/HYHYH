@@ -7,7 +7,6 @@ App.room = App.cable.subscriptions.create "RoomChannel",
 
   received: (data) ->
     # Called when there's incoming data on the websocket for this channel
-    console.log(data)
     print_message = (username, content) ->
       msgTable = $('#messages-table')
       msgTable.append '<div class="message">' +
@@ -21,6 +20,8 @@ App.room = App.cable.subscriptions.create "RoomChannel",
           $('#player-status').text("playing")
         else if data.content is "$pulse$"
           $('#player-status').text("pulsed")
+        else if data.content.substring(0,6) is "$time$"
+          player.seekTo(data.content.substr(6))
         else
           print_message(data.username, data.content)
       else

@@ -2,15 +2,16 @@
   display: flex;
 }
 
-#player {
-  justify-content: flex-start;
-  align-items: stretch;
-  flex-grow: 3;
+#video_contorl {
+  flex-grow: 5;
 }
+
 #message-wr{
-  justify-content: flex-start;
-  align-items: stretch;
   flex-grow: 1;
+}
+
+#playback-info{
+  text-align-last: right;
 }
 
 .messages{
