@@ -29,8 +29,8 @@ class RoomsController < ApplicationController
     @delete_id = @user.room_id
     @user.update_attribute('room_id', nil)
     User.where(:room_id => @delete_id).update_all(room_id: nil)
-    Message.where(:room_id => @delete_id).destroy
-    ActiveUser.where(:room_id => @delete_id).destroy
+    Message.where(:room_id => @delete_id).destroy_all
+    ActiveUser.where(:room_id => @delete_id).destroy_all
     flash[:success] = "Room deleted"
     redirect_to root_path
   end

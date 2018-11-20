@@ -5,12 +5,12 @@
 #player {
   justify-content: flex-start;
   align-items: stretch;
+  flex-grow: 3;
 }
 #message-wr{
   justify-content: flex-start;
   align-items: stretch;
-  width: 30%;
-
+  flex-grow: 1;
 }
 
 .messages{
@@ -38,19 +38,3 @@
 .message-content{
   width: 100%;
 }
-
-// .message-input
-//   background-color: rgba(0,0,0,0.03)
-//   box-sizing: border-box
-//   height: 13%
-//   padding: 0 5px 5px
-//   form
-//     height: 100%
-//   textarea
-//     height: 100%
-//     width: 84.5%
-//   input
-//     float: right
-//     height: 100%
-//     vertical-align: top
-//     width: 14.5%
