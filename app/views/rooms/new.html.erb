@@ -36,17 +36,19 @@
   
     <div class="field">
       <%= form.label :link_3 %>
-      <%= form.text_field :link_3 %>
+      <%= form.select :link_3, Playlist.pluck(:link), { multiple: false, size: 1 } %>
+      <% Playlist.cre
     </div>
   
+    
     <div class="field">
       <%= form.label :link_4 %>
-      <%= form.text_field :link_4 %>
+      <%= form.select :link_4, Playlist.pluck(:link), { multiple: false, size: 1 } %>
     </div>
-  
+    
     <div class="field">
       <%= form.label :link_5 %>
-      <%= form.text_field :link_5 %>
+      <%= form.select :link_5, Playlist.pluck(:link), { multiple: false, size: 1 } %>
     </div>
     
     <hr>
