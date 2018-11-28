@@ -1,6 +1,6 @@
 <% provide(:title, "Sync Room | My Profile") %>
 
-<div class="container">
+<div class="container-fluid">
 	<img src=<%= @user.avatar %> />
 	<%= form_for @user, :html => {:class => "form-horizontal"} do |f| %>
 		<div class="form-group">

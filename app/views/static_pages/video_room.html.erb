@@ -1,61 +1,98 @@
-<ul id="playlist">
-    <div class="container">
-        <iframe width="800" height="500" id="vid_frame" src='<%= convert_link(@room.link_1) %>' frameborder="0"
-            allowfullscreen="allowfullscreen"></iframe>
-    </div>
-    <div class="vid-item" onClick="setSrc(1);" src=<%=@room.link_1 %>>
-        <div class="thumb">
-            <img src=<%=get_thumbnail(@room.link_1)%> alt="" />
+<!DOCTYPE html>
+<html>
+  <body>
+    <div id="container">
+      <div id="video_contorl">
+        <div class="embed-responsive embed-responsive-16by9">
+            <div id="player"></div>
         </div>
-        <div class="desc">
-            <%= get_title(@room.link_1) %>
-        </div>
+        <div data-behavior='room-info' data-room-id='<%= @room.id %>' data-host-id='<%= @room.host_id%>'>
+            <div class="alert alert-light" style="margin-bottom:0; padding-left:0">
+                <div class="same-line"> 
+                    <h4 class="same-line-left">
+                        <span>[room_name:<%= @room.room_name%>  </span>    
+                        <span>host:<%= @room.host_id %>]  </span>
+                    <h4>
+                    <h4 id="playback-info" class="same-line-right">
+                        <span>status:</span>
+                        <span id="player-status">paused</span>
+                        <b id="current-time"></b>
+                        <span> / </span>
+                        <b id="duration"></b>
+                    </h4>
+                </div>
+                <% if current_user.id == @room.host_id %>
+                    <div class="same-line">
+                        <div class="same-line-left">
+                            <span id="play" type="button" class="btn btn-secondary">play</span>
+                            <span id="pause" type="button" class="btn btn-secondary">pause</span>
+                        </div>
+                        <input class="same-line-right" type="range" value="0">
+                    </div>
+                <% end %>
+            </div> 
+        </div> 
+      </div>
+      <div id="message-wr">
+        <%= render :template => 'messages/index' %>
+      </div>
     </div>
 
-    <% unless @room.link_2.to_s.empty? %>
-    <div class="vid-item" onClick="setSrc(2);" src=<%=@room.link_2 %>>
-        <div class="thumb">
-            <img src=<%=get_thumbnail(@room.link_2)%> alt="" />
-        </div>
-        <div class="desc">
-            <%= get_title(@room.link_2) %>
-        </div>
-    </div>
-    <% end %>
 
-    <% unless @room.link_3.to_s.empty? %>
-    <div class="vid-item" onClick="setSrc(3);" src=<%=@room.link_3 %>>
-        <div class="thumb">
-            <img src=<%=get_thumbnail(@room.link_3)%> alt="" />
+    <ul id="playlist">
+        <div class="vid-item" onClick="setSrc(1);" src=<%=@room.link_1 %>>
+            <div class="thumb">
+                <img src=<%=get_thumbnail(@room.link_1)%> alt="" />
+            </div>
+            <div class="desc">
+                <%= get_title(@room.link_1) %>
+            </div>
         </div>
-        <div class="desc">
-            <%= get_title(@room.link_3) %>
-        </div>
-    </div>
-    <% end %>
 
-    <% unless @room.link_4.to_s.empty? %>
-    <div class="vid-item" onClick="setSrc(4);" src=<%=@room.link_4 %>>
-        <div class="thumb">
-            <img src=<%=get_thumbnail(@room.link_4)%> alt="" />
+        <% unless @room.link_2.to_s.empty? %>
+        <div class="vid-item" onClick="setSrc(2);" src=<%=@room.link_2 %>>
+            <div class="thumb">
+                <img src=<%=get_thumbnail(@room.link_2)%> alt="" />
+            </div>
+            <div class="desc">
+                <%= get_title(@room.link_2) %>
+            </div>
         </div>
-        <div class="desc">
-            <%= get_title(@room.link_4) %>
-        </div>
-    </div>
-    <% end %>
+        <% end %>
 
-    <% unless @room.link_5.to_s.empty? %>
-    <div class="vid-item" onClick="setSrc(5);" src=<%=@room.link_5 %>>
-        <div class="thumb">
-            <img src=<%=get_thumbnail(@room.link_5)%> alt="" />
+        <% unless @room.link_3.to_s.empty? %>
+        <div class="vid-item" onClick="setSrc(3);" src=<%=@room.link_3 %>>
+            <div class="thumb">
+                <img src=<%=get_thumbnail(@room.link_3)%> alt="" />
+            </div>
+            <div class="desc">
+                <%= get_title(@room.link_3) %>
+            </div>
         </div>
-        <div class="desc">
-            <%= get_title(@room.link_5) %>
-        </div>
-    </div>
-    <% end %>
+        <% end %>
 
+        <% unless @room.link_4.to_s.empty? %>
+        <div class="vid-item" onClick="setSrc(4);" src=<%=@room.link_4 %>>
+            <div class="thumb">
+                <img src=<%=get_thumbnail(@room.link_4)%> alt="" />
+            </div>
+            <div class="desc">
+                <%= get_title(@room.link_4) %>
+            </div>
+        </div>
+        <% end %>
+
+        <% unless @room.link_5.to_s.empty? %>
+        <div class="vid-item" onClick="setSrc(5);" src=<%=@room.link_5 %>>
+            <div class="thumb">
+                <img src=<%=get_thumbnail(@room.link_5)%> alt="" />
+            </div>
+            <div class="desc">
+                <%= get_title(@room.link_5) %>
+            </div>
+        </div>
+        <% end %>
+    </ul>
     </div>
     <div class="btn-group-vertical">
         <% if current_user.id == @room.host_id %>
@@ -64,20 +101,102 @@
         <%= link_to "Exit Room", exit_user_path, method: :post, class: "btn btn-primary btn-lg btn-block btn-color center" %>
         <% end %>
     </div>
-</ul>
+  </body>
+</html>
 
-<script type="text/javascript">
-    function setSrc(option) {
-        if (option == 1) {
-            document.getElementById('vid_frame').src = '<%= convert_link(@room.link_1) %>';
-        } else if (option == 2) {
-            document.getElementById('vid_frame').src = '<%= convert_link(@room.link_2) %>';
-        } else if (option == 3) {
-            document.getElementById('vid_frame').src = '<%= convert_link(@room.link_3) %>';
-        } else if (option == 4) {
-            document.getElementById('vid_frame').src = '<%= convert_link(@room.link_4) %>';
-        } else if (option == 5) {
-            document.getElementById('vid_frame').src = '<%= convert_link(@room.link_5) %>';
-        }
+<script>
+var tag = document.createElement('script');
+
+tag.src = "https://www.youtube.com/iframe_api";
+var firstScriptTag = document.getElementsByTagName('script')[0];
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+// This function creates an <iframe> (and YouTube player) after the API code downloads.
+var player;
+function onYouTubeIframeAPIReady() {
+  player = new YT.Player('player', {
+
+    videoId: '<%= convert_link(@room.link_1) %>',
+    events: {
+      'onReady': initialize,
     }
+  });
+}
+
+// 4. The API will call this function when the video player is ready.
+function initialize(){
+  // Update the controls on load
+  updateTimerDisplay();
+  updateProgressBar();
+  // Clear any old interval.
+  // clearInterval(time_update_interval);
+  // Start interval to update elapsed time display and
+  // the elapsed part of the progress bar every second.
+  time_update_interval = setInterval(function () {
+      updateTimerDisplay();
+      updateProgressBar();
+      if($('#player-status').text() === "playing") {
+        player.playVideo();
+      }
+      if($('#player-status').text() === "paused") {
+        player.pauseVideo();
+      }
+  }, 1000)
+
+}
+
+// This function is called by initialize()
+function updateTimerDisplay(){
+  // Update current time text display.
+  $('#current-time').text(formatTime( player.getCurrentTime() ));
+  $('#duration').text(formatTime( player.getDuration() ));
+}
+
+function formatTime(time){
+  time = Math.round(time);
+  var minutes = Math.floor(time / 60),
+  seconds = time - minutes * 60;
+  seconds = seconds < 10 ? '0' + seconds : seconds;
+  return minutes + ":" + seconds;
+}
+
+$('#progress-bar').on('mouseup touchend', function (e) {
+  // Calculate the new time for the video.
+  // new time in seconds = total duration in seconds * ( value of range input / 100 )
+  var newTime = player.getDuration() * (e.target.value / 100);
+  App.room.send_message(<%=@room.id%>,"$time$"+newTime);
+  // Skip video to new time.
+  player.seekTo(newTime);
+});
+
+// This function is called by initialize()
+function updateProgressBar(){
+  // Update the value of our progress bar accordingly.
+  $('#progress-bar').val((player.getCurrentTime() / player.getDuration()) * 100);
+}
+$('#play').on('click', function () {
+  player.playVideo();
+  $('#player-status').text("playing");
+  App.room.send_message(<%=@room.id%>,"$play$");
+});
+$('#pause').on('click', function () {
+  player.pauseVideo();
+  $('#player-status').text("paused")
+  App.room.send_message(<%=@room.id%>,"$pause$");
+});
+
+function setSrc(option) {
+    if (option == 1) {
+        document.getElementById('vid_frame').src = '<%= convert_link(@room.link_1) %>';
+    } else if (option == 2) {
+        document.getElementById('vid_frame').src = '<%= convert_link(@room.link_2) %>';
+    } else if (option == 3) {
+        document.getElementById('vid_frame').src = '<%= convert_link(@room.link_3) %>';
+    } else if (option == 4) {
+        document.getElementById('vid_frame').src = '<%= convert_link(@room.link_4) %>';
+    } else if (option == 5) {
+        document.getElementById('vid_frame').src = '<%= convert_link(@room.link_5) %>';
+    }
+}
+
 </script>

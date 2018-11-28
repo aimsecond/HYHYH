@@ -7,7 +7,7 @@
         <%= link_to "Most User", mostUser_rooms_path, class: "btn btn-primary btn-lg btn-block btn-color" %>
     </div>
     
-    <div class="container">
+    <div class="container-fluid">
         <% @rooms.each_slice(3) do |array_of_3_items|%>
         <div class="row">
             <% array_of_3_items.each do |room|%>

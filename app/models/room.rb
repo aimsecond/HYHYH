@@ -4,6 +4,7 @@ class Room < ApplicationRecord
   validates :host_id, presence: true
   validate :valid_url
   has_many :users
+  has_many :messages, dependent: :destroy
   has_one :active_user, dependent: :destroy
   scope :recent, -> {order(created_at: :desc)}
   scope :oldest, -> {order(created_at: :asc)}

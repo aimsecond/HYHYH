@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+	skip_before_action :verify_authenticity_token, :except => []
 
 	def new
 		@user = User.new
@@ -11,6 +12,7 @@ class UsersController < ApplicationController
 	def create
 		@user = User.new(user_params)    # Not the final implementation!
 		if @user.save
+			@user.update_attribute('avatar', 'https://i.blogs.es/f1870d/github-microsoft/1366_2000.jpg')
 			log_in @user
 			flash[:success] = "Create or join a room to watch!"
 			redirect_to @user
