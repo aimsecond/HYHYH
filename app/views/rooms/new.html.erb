@@ -33,29 +33,27 @@
       <%= form.label :link_2 %>
       <%= form.text_field :link_2 %>
     </div>  
-  
+    
     <div class="field">
       <%= form.label :link_3 %>
-      <%= form.select :link_3, Playlist.pluck(:link), { multiple: false, size: 1 } %>
-      <% Playlist.cre
-    </div>
+      <%= form.text_field :link_3 %>
+    </div>  
   
     
     <div class="field">
       <%= form.label :link_4 %>
-      <%= form.select :link_4, Playlist.pluck(:link), { multiple: false, size: 1 } %>
+      <%= form.select :link_4, Playlist.pluck(:title), { multiple: false, size: 1 } %>
     </div>
     
     <div class="field">
       <%= form.label :link_5 %>
-      <%= form.select :link_5, Playlist.pluck(:link), { multiple: false, size: 1 } %>
+      <%= form.select :link_5, Playlist.pluck(:title), { multiple: false, size: 1 } %>
     </div>
     
     <hr>
     <div class="actions">
       <%= form.submit "Create Room" %>
     </div>
-    
     <% end %>
   </div>
 </div>

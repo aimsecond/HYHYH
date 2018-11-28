@@ -1,6 +1,14 @@
 class RoomsController < ApplicationController
   def new
     @room = Room.new
+    
+    links = []
+    @room.attributes.each do |k,v|
+      next if k != "link_1" || k != "link_2" || k != "link_3" || k != "link_4" || k != "link_5" || v == nil || v == ""
+      links += v
+    end
+    
+    links.each {|x| Playlist.create(room_id: @room.id, link: x, title: "test")}
   end
   
   def index
