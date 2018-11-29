@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  get '/playlists', to: 'playlists#index'
   get 'sessions/new'
   root 'static_pages#home'
   get  '/lobby', to: 'static_pages#lobby'
@@ -14,7 +15,12 @@ Rails.application.routes.draw do
       post :join
     end
   end
-  
+  resources :playlists do
+    collection do
+      get :recent
+      get :mostPlayed
+    end
+  end
   # get '/rooms/create', to:'rooms#new'
   # get '/videorooms/:id', to: 'messages#index', as: 'video_room'
   get '/videorooms/:id', to: 'static_pages#video_room', as: 'video_room'

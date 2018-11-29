@@ -42,12 +42,12 @@
     
     <div class="field">
       <%= form.label :link_4 %>
-      <%= form.select :link_4, Playlist.pluck(:title), { multiple: false, size: 1 } %>
+      <%= form.select :link_4, Playlist.pluck(:link), { multiple: false, include_blank: true, size: 1 } %>
     </div>
     
     <div class="field">
       <%= form.label :link_5 %>
-      <%= form.select :link_5, Playlist.pluck(:title), { multiple: false, size: 1 } %>
+      <%= form.select :link_5, Playlist.pluck(:link), { multiple: false, include_blank: true, size: 1 } %>
     </div>
     
     <hr>

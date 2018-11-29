@@ -9,7 +9,6 @@ class Room < ApplicationRecord
   scope :recent, -> {order(created_at: :desc)}
   scope :oldest, -> {order(created_at: :asc)}
   scope :mostUser, -> {joins(:active_user).order('active_users.user_count DESC')}
-  has_many :playlist
 end
 
 private 

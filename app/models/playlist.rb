@@ -1,3 +1,4 @@
 class Playlist < ApplicationRecord
-  belongs_to :room
+  scope :recent, -> {order(updated_at: :desc)}
+  scope :mostPlayed, -> {order(count: :desc)}
 end
