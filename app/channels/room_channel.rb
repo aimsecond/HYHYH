@@ -1,7 +1,7 @@
 class RoomChannel < ApplicationCable::Channel
   def subscribed
     # stream_from "room_channel"
-      stream_from "rooms:#{current_user.room_id}"
+    stream_from "rooms:#{current_user.room_id}"
   end
 
   def unsubscribed
