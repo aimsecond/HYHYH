@@ -1,4 +1,5 @@
 class RoomsController < ApplicationController
+
   def new
     @room = Room.new
   end
@@ -9,8 +10,20 @@ class RoomsController < ApplicationController
 
   def create
     @room = Room.new(room_params)
+    
     if User.exists?(id: @room.host_id)
       if @room.save
+        links = @room.attributes.without("admin_1", "admin_2", "host_id", "room_name", "id", "created_at", "updated_at")
+        links.each do |k, v|
+          if v != nil && v != ""
+              if Playlist.exists?(link: v)
+                Playlist.find_by_link(v).increment!(:count)
+              else
+                video = VideoInfo.new(v)
+                Playlist.create(link: v, title: video.title, count: 1)
+              end
+          end
+        end
         @user = User.find(room_params[:host_id])
         @user.update_attribute('room_id', @room.id)
         ActiveUser.create(room_id: @room.id, user_count: 1)
