@@ -7,7 +7,7 @@
         </clients>
         <!-- Server side setup -->
         <servers>
-                <server host="hyhyh-load2.jm8qqevcmb.us-west-2.elasticbeanstalk.com" port="80" type="tcp"></server>
+                <server host="hyhyh-test.jm8qqevcmb.us-west-2.elasticbeanstalk.com" port="80" type="tcp"></server>
         </servers>
         <load>
                 <arrivalphase phase="1" duration="30" unit="second">
