@@ -17,7 +17,7 @@
                         <h4 class="panel-title">
                             <p><%= room.room_name %></p>
                             <p>Room ID: <%= room.id %></p>
-                            <p>Active User: <%= User.where(room_id: room.id ).count %></p>
+                            <p>Active User: <%= ActiveUser.find_by_room_id(252).user_count %></p>
                         </h4>
                         <img class="img-responsive" src=<%=get_thumbnail(room.link_1)%> alt="" />
                     </div>
