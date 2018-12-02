@@ -34,7 +34,7 @@ user_array_join = []
 (251..500).each do |num|
   prng = Random.new
   room = prng.rand(0..249)
-  user_array_join << User.create!(username: "User"+num.to_s, password: "password"+num.to_s, room_id: @@room_offset + room)
+  user_array_join << User.create!(username: "User"+num.to_s, password: "password"+num.to_s, room_id: @room_offset + room)
 end
 
 
