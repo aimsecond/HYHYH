@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   has_many :messages
-  belongs_to :room, optional: true
+  belongs_to :room, optional: true, counter_cache: true ##add counter_cache
   validates :username, presence: true, length: { maximum: 30 }, 
                        uniqueness: {case_sensitive: false}
                   

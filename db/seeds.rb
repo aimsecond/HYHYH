@@ -8,8 +8,26 @@
 
 user_array = []                                                         
 (1..250).each do |num|                                                       
-  user_array << User.create!(username: "User"+num.to_s, password: "password"+num.to_s, room_id: num)                 
+  user_array << User.create!(username: "User"+num.to_s, password: "password"+num.to_s, room_id: nil)                 
 end 
+
+room_array = []
+(user_array).each do |user|
+  if user.id <= 125
+    randName = SecureRandom.hex(5)
+    @room = Room.create!(host_id: user.id, room_name: user.username+"'s Room", link_1: "https://www.youtube.com/watch?v=" + randName.to_s + user.id.to_s, link_2: "https://www.youtube.com/watch?v=" + randName.to_s + user.id.to_s)
+    room_array << @room
+    User.find(user.id).update_attribute('room_id', @room.id)
+  elsif user.id > 125 && user.id < 240
+    @room = Room.create!(host_id: user.id, room_name: user.username+"'s Room", link_1: "https://www.youtube.com/watch?v=kJQP7kiw5Fk")
+    room_array << @room
+    User.find(user.id).update_attribute('room_id', @room.id)
+  else
+    @room = Room.create!(host_id: user.id, room_name: user.username+"'s Room", link_1: "https://www.youtube.com/watch?v=g-N3s4sBlvs")
+    room_array << @room
+    User.find(user.id).update_attribute('room_id', @room.id)
+  end
+end
 
 user_array_join = []
 (251..500).each do |num|
@@ -18,17 +36,6 @@ user_array_join = []
   user_array_join << User.create!(username: "User"+num.to_s, password: "password"+num.to_s, room_id: room - 249)
 end
 
-room_array = []
-(user_array).each do |user|
-  if user.id <= 125
-    randName = SecureRandom.hex(5)
-    room_array << Room.create!(host_id: user.id, room_name: user.username+"'s Room", link_1: "https://www.youtube.com/watch?v=" + randName.to_s + user.id.to_s, link_2: "https://www.youtube.com/watch?v=" + randName.to_s + user.id.to_s)
-  elsif user.id > 125 && user.id < 240
-    room_array << Room.create!(host_id: user.id, room_name: user.username+"'s Room", link_1: "https://www.youtube.com/watch?v=kJQP7kiw5Fk")
-  else
-    room_array << Room.create!(host_id: user.id, room_name: user.username+"'s Room", link_1: "https://www.youtube.com/watch?v=g-N3s4sBlvs")
-  end
-end
 
 Playlist.create!(link: "https://www.youtube.com/watch?v=kJQP7kiw5Fk", title: "Most Popular link", count:1 )
 Playlist.create!(link: "https://www.youtube.com/watch?v=g-N3s4sBlvs", title: "Second Popular link", count:1 )
