@@ -37,15 +37,6 @@ user_array_join = []
   user_array_join << User.create!(username: "User"+num.to_s, password: "password"+num.to_s, room_id: @room_offset + room)
 end
 
-
-user_array_join = []
-(251..500).each do |num|
-  prng = Random.new
-  room = prng.rand(250..350)
-  user_array_join << User.create!(username: "User"+num.to_s, password: "password"+num.to_s, room_id: room - 249)
-end
-
-
 Playlist.create!(link: "https://www.youtube.com/watch?v=kJQP7kiw5Fk", title: "Most Popular link", count:1 )
 Playlist.create!(link: "https://www.youtube.com/watch?v=g-N3s4sBlvs", title: "Second Popular link", count:1 )
 (room_array).each do |room|
