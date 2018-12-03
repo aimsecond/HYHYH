@@ -1,13 +1,5 @@
 <?xml version="1.0"?>
-<!DOCTYPE tsung SYSTEM "/usr/local/share/tsung/tsung-1.0.dtd" 
-resources [
-  <!ENTITY link "https://www.youtube.com/watch?v=">
-]>
-
-<resources>
-    <string name="app_name">&appname;</string>
-    <string name="description">The &appname; app was created by &author;</string>
-</resources>
+<!DOCTYPE tsung SYSTEM "/usr/local/share/tsung/tsung-1.0.dtd">
 <tsung loglevel="debug">
 	<!-- Client side setup -->
 	<clients>
@@ -18,18 +10,24 @@ resources [
 		<server host="hyhyh-test.jm8qqevcmb.us-west-2.elasticbeanstalk.com" port="80" type="tcp"></server>
 	</servers>
 	    <load>
-	        <arrivalphase phase="1" duration="60" unit="second">
-	                <users arrivalrate="10" unit="second"/>
+	        <arrivalphase phase="1" duration="30" unit="second">
+	                <users arrivalrate="5" unit="second"/>
 	        </arrivalphase>
 
-	        <arrivalphase phase="2" duration="60" unit="second">
+	        <arrivalphase phase="2" duration="30" unit="second">
+	                <users arrivalrate="10" unit="second"/>
+	        </arrivalphase>
+	        <arrivalphase phase="3" duration="30" unit="second">
+	                <users arrivalrate="15" unit="second"/>
+	        </arrivalphase>
+	        <arrivalphase phase="4" duration="30" unit="second">
 	                <users arrivalrate="20" unit="second"/>
 	        </arrivalphase>
-	        <arrivalphase phase="3" duration="60" unit="second">
-	                <users arrivalrate="30" unit="second"/>
+	        <arrivalphase phase="5" duration="30" unit="second">
+	                <users arrivalrate="25" unit="second"/>
 	        </arrivalphase>
-	        <arrivalphase phase="4" duration="60" unit="second">
-	                <users arrivalrate="40" unit="second"/>
+	        <arrivalphase phase="6" duration="30" unit="second">
+	                <users arrivalrate="30" unit="second"/>
 	        </arrivalphase>
 	    </load>
  	<options>
@@ -47,16 +45,11 @@ resources [
 			<setdynvars sourcetype="random_string" length="11">
 				<var name="link1" />
 				<var name="link2" />
-				<var name="link3" />
 			</setdynvars>
 
 			<setdynvars sourcetype="random_string" length="10">
                 <var name="username" />
             </setdynvars>
-
-<!-- 			<form action="go.cgi" method="POST">
-  				<hidden name="room_id" value="1"></form>
-			</form> -->
 
  			<request subst="true">
 				<dyn_variable name="authenticity_token" re='name="authenticity_token" value="(.*)"'></dyn_variable>
@@ -82,48 +75,28 @@ resources [
 			</request>
 
 			<thinktime value="2"></thinktime>
+			
+			<request subst="true">
+        <dyn_variable name="authenticity_token" ></dyn_variable>
+        <http url="/rooms/new" version="1.1" method="GET"></http>
+      </request>
+            
+      <thinktime value="2"></thinktime>
 
 			<!-- create room -->
 			<request subst="true">
 				<dyn_variable name="roomid" re="[Ll]ocation: http://.*/rooms/([0-9]+)"></dyn_variable>
-				<http url="/rooms/new"
+				<http url="/rooms"
 					version="1.1"
 					method="POST"
-					contents="authenticity_token=%%_escaped_authenticity_token%%&amp;host_id=%%_userid%%&amp;room_name=%%_room_name%%&amp;link_1=&link_%%_link1%%&amp;link_2=&link_%%_link2%%&amp;link_3=&link_%%_link3%%&amp;commit=Create+Room"
+					contents="authenticity_token=%%_escaped_authenticity_token%%&amp;room[host_id]=%%_userid%%&amp;room[room_name]=%%_room_name%%&amp;room[link_1]=https://www.youtube.com/watch?v=%%_link1%%&amp;room[link_2]=https://www.youtube.com/watch?v=%%_link2%%&amp;commit=Create+Room"
 					content_type="application/x-www-form-urlencoded"/>
 			</request>
-            
-            <!-- Go to the room page -->
-            <request subst="true">
-                <dyn_variable name="authenticity_token"></dyn_variable>
-                <http url="videorooms/%%_roomid%%" version="1.1" method="GET"/>
-            </request>
-
-
-			<!-- delete room -->
-			<!-- <request subst="true">
-                <http url="videorooms/%%_roomid%%" version="1.1" method="GET"/>
-            </request> -->
-
-
-
-			<!-- join room -->
-<!-- 			<request>
-  				<dyn_variable name="random_room"></dyn_variable>
-  				<http url="/" method="GET" version="1.0"></http>
-			</request>
-
-			<request subst="true">
-				<http url="/join" version="1.0"
-					contents="username=nic&amp;search=%%_random_room%%"
-					content_type="application/x-www-form-urlencoded" method="POST">
-				</http>
-			</request> -->
 
 			<!-- Logout -->
-			<request subst="true">
-				<http url="/logout" method="DELETE" />
-			</request>
+			<!--<request subst="true">-->
+			<!--	<http url="/logout" method="DELETE" />-->
+			<!--</request>-->
 		</session>
 
 		<!-- Register and go to lobby site -->
@@ -134,7 +107,7 @@ resources [
                 <var name="username" />
             </setdynvars>
 
-             <request subst="true">
+      <request subst="true">
 				<dyn_variable name="authenticity_token" re='name="authenticity_token" value="(.*)"'></dyn_variable>
 				<http url="/signup" version="1.1" method="GET"></http>
 			</request>
@@ -164,7 +137,7 @@ resources [
 				<dyn_variable name="authenticity_token"></dyn_variable>
 				<http url="/rooms" version="1.1" method="GET"/>
 			</request>
-
+			
 			<!-- lobby recent -->
 			<request subst="true">
 				<dyn_variable name="authenticity_token"></dyn_variable>
@@ -176,6 +149,32 @@ resources [
 				<dyn_variable name="authenticity_token"></dyn_variable>
 				<http url="/rooms/mostUser" version="1.1" method="GET"/>
 			</request>
+			
+      <thinktime value="2"></thinktime>
+			
+			<setdynvars sourcetype= "random_number" start="50" end="150">
+        <var name="random_room" />
+      </setdynvars>
+      
+			<request subst="true">
+			    <dyn_variable name="roomid" re="[Ll]ocation: http://.*/videorooms/([0-9]+)"></dyn_variable>
+			    <http url="/users/%%_userid%%/join"
+			                            version="1.1"
+			                            method="POST"
+			                            contents="authenticity_token=%%_escaped_authenticity_token%%&amp;search=%%_random_room%%&amp;id=%%_userid%%"
+			                            content_type="application/x-www-form-urlencoded"/>
+			</request>
+			
+			
+			<thinktime value="2"></thinktime>
+			<request subst="true">
+			    <http url="/users/%%_roomid%%/exit"
+			      
+			                            version="1.1"
+			                            method="POST"
+			                            contents="authenticity_token=%%_escaped_authenticity_token%%"
+			                            content_type="application/x-www-form-urlencoded"/>
+			</request>
 
 			<!-- Logout -->
 			<request subst="true">
@@ -183,60 +182,5 @@ resources [
 			</request>
 		</session>
 
-		<session name="register-videos-sort" weight="1" type="ts_http">
-			<setdynvars sourcetype="random_string" length="10">
-				<!-- Randomly generate the username -->
-                <var name="username" />
-            </setdynvars>
-
-             <request subst="true">
-				<dyn_variable name="authenticity_token" re='name="authenticity_token" value="(.*)"'></dyn_variable>
-				<http url="/signup" version="1.1" method="GET"></http>
-			</request>
-
-			<thinktime value="2"></thinktime>
-
-			<setdynvars sourcetype="eval" code="fun({Pid,DynVars})->
-				{ok, Val} = ts_dynvars:lookup(authenticity_token, DynVars),
-				edoc_lib:escape_uri(binary_to_list(Val)) end.">
-				<var name="escaped_authenticity_token" />
-			</setdynvars>
-
- 			<!-- Create the random account and get the userid -->
-			<request subst="true">
-				<dyn_variable name="userid" re="[Ll]ocation: http://.*/users/([0-9]+)"></dyn_variable>
-				<http url='/users'
-					version='1.1' 
-					method='POST' 
-					contents='authenticity_token=%%_escaped_authenticity_token%%&amp;user%5Busername%5D=%%_username%%&amp;user%5Bpassword%5D=123456&amp;user%5Bpassword_confirmation%5D=123456&amp;commit=Create+Account'
-					content_type="application/x-www-form-urlencoded"/>
-			</request>
-
-			<thinktime value="2"></thinktime>
-
-			<!-- Go to videos -->
-			<request subst="true">
-				<dyn_variable name="authenticity_token"></dyn_variable>
-				<http url="/playlists" version="1.1" method="GET"/>
-			</request>
-
-			<!-- videos recent -->
-			<request subst="true">
-				<dyn_variable name="authenticity_token"></dyn_variable>
-				<http url="/playlists/recent" version="1.1" method="GET"/>
-			</request>
-
-			<!-- videos mostPlayed -->
-			<request subst="true">
-				<dyn_variable name="authenticity_token"></dyn_variable>
-				<http url="/playlists/mostPlayed" version="1.1" method="GET"/>
-			</request>
-
-			<!-- Logout -->
-			<request subst="true">
-				<http url="/logout" method="DELETE" />
-			</request>
-
-		</session>
 	</sessions>
 </tsung>
