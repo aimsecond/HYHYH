@@ -26,4 +26,7 @@
 			<% end %>
 		</div>
 	<% end %>
+	<div class="pagination">
+		<%= will_paginate @playlists, renderer: BootstrapPagination::Rails %>
+	</div>
 </div>
