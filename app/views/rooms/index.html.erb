@@ -17,7 +17,8 @@
                         <h4 class="panel-title">
                             <p><%= room.room_name %></p>
                             <p>Room ID: <%= room.id %></p>
-                            <p>Active User: <%= ActiveUser.find_by_room_id(room.id).user_count %></p>
+                            <!--use size method instead-->
+                            <p>Active User: <%= room.users.size %></p>
                         </h4>
                         <!--<img class="img-responsive" src=%=get_thumbnail(room.link_1)%> alt="" />-->
                         <img class="img-responsive" src="https://getuikit.com/v2/docs/images/placeholder_600x400.svg" alt="" />

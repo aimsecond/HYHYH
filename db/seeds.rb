@@ -37,7 +37,6 @@ user_array_join = []
   user_array_join << User.create!(username: "User"+num.to_s, password: "password"+num.to_s, room_id: @room_offset + room)
 end
 
-
 Playlist.create!(link: "https://www.youtube.com/watch?v=kJQP7kiw5Fk", title: "Most Popular link", count:1 )
 Playlist.create!(link: "https://www.youtube.com/watch?v=g-N3s4sBlvs", title: "Second Popular link", count:1 )
 (room_array).each do |room|
