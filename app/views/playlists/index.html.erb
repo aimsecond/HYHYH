@@ -11,18 +11,20 @@
 	<% @playlists.each_slice(3) do |array_of_3_items|%>
 		<div class="row">
 			<% array_of_3_items.each do |video|%>
-				<div class="col-md-4">
-					<div class="panel panel-default ">
-						<div class="panel-body">
-							<h4 class="panel-title">
-								<p><b><%= video.title %></b></p>
-								<p>Video link: <%= video.link %></p>
-								<p>Played: <%= video.count %></p>
-							</h4>
-							<img class="img-responsive" src=<%=get_thumbnail(video.link)%> alt="" />
+				<% cache(cache_key_for_playlists(video)) do %>
+					<div class="col-md-4">
+						<div class="panel panel-default ">
+							<div class="panel-body">
+								<h4 class="panel-title">
+									<p><b><%= video.title %></b></p>
+									<p>Video link: <%= video.link %></p>
+									<p>Played: <%= video.count %></p>
+								</h4>
+								<img class="img-responsive" src=<%=get_thumbnail(video.link)%> alt="" />
+							</div>
 						</div>
 					</div>
-				</div>
+				<% end %>
 			<% end %>
 		</div>
 	<% end %>

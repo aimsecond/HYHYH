@@ -6,29 +6,29 @@
         <%= link_to "Oldest", oldest_rooms_path, class: "btn btn-primary btn-lg btn-block btn-color" %>
         <%= link_to "Most User", mostUser_rooms_path, class: "btn btn-primary btn-lg btn-block btn-color" %>
     </div>
-    
-    <div class="container-fluid">
-        <% @rooms.each_slice(3) do |array_of_3_items|%>
-        <div class="row">
-            <% array_of_3_items.each do |room|%>
-            <div class="col-md-4">
-                <div class="panel panel-default ">
-                    <div class="panel-body">
-                        <h4 class="panel-title">
-                            <p><%= room.room_name %></p>
-                            <p>Room ID: <%= room.id %></p>
-                            <!--use size method instead-->
-                            <p>Active User: <%= room.users.size %></p>
-                        </h4>
-                        <img class="img-responsive" src=<%=get_thumbnail(room.link_1)%> alt="" />
-                        <!--<img class="img-responsive" src="https://getuikit.com/v2/docs/images/placeholder_600x400.svg" alt="" />-->
-                    </div>
+        <div class="container-fluid">
+            <% @rooms.each_slice(3) do |array_of_3_items|%>
+                <div class="row">
+                    <% array_of_3_items.each do |room|%>
+                    <% cache(cache_key_for_rooms(room)) do %>
+                        <div class="col-md-4">
+                            <div class="panel panel-default ">
+                                <div class="panel-body">
+                                    <h4 class="panel-title">
+                                        <p><%= room.room_name %></p>
+                                        <p>Room ID: <%= room.id %></p>
+                                        <p>Active User: <%= room.users.size %></p>
+                                    </h4>
+                                    <img class="img-responsive" src=<%=get_thumbnail(room.link_1)%> alt="" />
+                                    <!--<img class="img-responsive" src="https://getuikit.com/v2/docs/images/placeholder_600x400.svg" alt="" />-->
+                                </div>
+                            </div>
+                        </div>
+                        <% end %>
+                    <% end %>
                 </div>
-            </div>
-            <% end %>
-        </div>
-		<% end %>
-		<div class="pagination">
-			<%= will_paginate @rooms, renderer: BootstrapPagination::Rails %>
-		</div>
-	</div>
+    		<% end %>
+    		<div class="pagination">
+    			<%= will_paginate @rooms, renderer: BootstrapPagination::Rails %>
+    		</div>
+    	</div>
