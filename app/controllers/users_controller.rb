@@ -3,10 +3,12 @@ class UsersController < ApplicationController
 
 	def new
 		@user = User.new
+		fresh_when([@user])
 	end
 
 	def show
 		@user = User.find(params[:id])
+		fresh_when([@user, @user.room_id])
 	end
 
 	def create
