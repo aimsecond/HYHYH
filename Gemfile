@@ -74,3 +74,7 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # get video title for youtube video
 gem 'video_info'
+
+# install paginatation library
+gem 'will_paginate'
+gem 'will_paginate-bootstrap'

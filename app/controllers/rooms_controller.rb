@@ -1,11 +1,12 @@
 class RoomsController < ApplicationController
   skip_before_action :verify_authenticity_token, :except => []
+  
   def new
     @room = Room.new
   end
   
   def index
-    @rooms = Room.all
+	@rooms = Room.all.paginate(:page => params[:page], :per_page => 6)
   end
 
   def create
@@ -49,17 +50,17 @@ class RoomsController < ApplicationController
   end
   
   def oldest
-    @rooms = Room.oldest
+ @rooms = Room.oldest.paginate(:page => params[:page], :per_page => 6)
     render action: :index
   end
   
   def recent
-    @rooms = Room.recent
+	@rooms = Room.recent.paginate(:page => params[:page], :per_page => 6)
     render action: :index
   end
   
   def mostUser
-    @rooms = Room.mostUser
+	@rooms = Room.mostUser.paginate(:page => params[:page], :per_page => 6)
     render action: :index
   end
   
