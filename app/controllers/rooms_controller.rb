@@ -1,5 +1,5 @@
 class RoomsController < ApplicationController
-
+  skip_before_action :verify_authenticity_token, :except => []
   def new
     @room = Room.new
   end
