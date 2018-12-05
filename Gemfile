@@ -78,3 +78,6 @@ gem 'video_info'
 # install paginatation library
 gem 'will_paginate'
 gem 'will_paginate-bootstrap'
+
+# caching
+gem 'actionpack-action_caching'

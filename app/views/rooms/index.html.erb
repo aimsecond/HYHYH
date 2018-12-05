@@ -10,20 +10,20 @@
             <% @rooms.each_slice(3) do |array_of_3_items|%>
                 <div class="row">
                     <% array_of_3_items.each do |room|%>
-                    <% cache(cache_key_for_rooms(room)) do %>
-                        <div class="col-md-4">
-                            <div class="panel panel-default ">
-                                <div class="panel-body">
-                                    <h4 class="panel-title">
-                                        <p><%= room.room_name %></p>
-                                        <p>Room ID: <%= room.id %></p>
-                                        <p>Active User: <%= room.users.size %></p>
-                                    </h4>
-                                    <img class="img-responsive" src=<%=get_thumbnail(room.link_1)%> alt="" />
-                                    <!--<img class="img-responsive" src="https://getuikit.com/v2/docs/images/placeholder_600x400.svg" alt="" />-->
+                        <% cache(cache_key_for_rooms(room)) do %>
+                            <div class="col-md-4">
+                                <div class="panel panel-default ">
+                                    <div class="panel-body">
+                                        <h4 class="panel-title">
+                                            <p><%= room.room_name %></p>
+                                            <p>Room ID: <%= room.id %></p>
+                                            <p>Active User: <%= room.users.size %></p>
+                                        </h4>
+                                        <img class="img-responsive" src=<%=get_thumbnail(room.link_1)%> alt="" />
+                                        <!--<img class="img-responsive" src="https://getuikit.com/v2/docs/images/placeholder_600x400.svg" alt="" />-->
+                                    </div>
                                 </div>
                             </div>
-                        </div>
                         <% end %>
                     <% end %>
                 </div>

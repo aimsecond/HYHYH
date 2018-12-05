@@ -1,5 +1,7 @@
 class RoomsController < ApplicationController
+ 
   skip_before_action :verify_authenticity_token, :except => []
+  caches_action :index, :oldest, :recent, :mostUser
   
   def new
     @room = Room.new if stale?(User.all)
@@ -10,8 +12,14 @@ class RoomsController < ApplicationController
   end
 
   def create
+    expire_action(:controller => 'rooms', :action => 'index')
+    expire_action(:controller => 'rooms', :action => 'oldest')
+    expire_action(:controller => 'rooms', :action => 'recent')
+    expire_action(:controller => 'rooms', :action => 'mostUser')
+    expire_action(:controller => 'playlists', :action => 'index')
+    expire_action(:controller => 'playlists', :action => 'mostPlayed')
+    expire_action(:controller => 'playlists', :action => 'recent')
     @room = Room.new(room_params)
-    
     if User.exists?(id: @room.host_id)
       if @room.save
         links = @room.attributes.without("admin_1", "admin_2", "host_id", "room_name", "id", "created_at", "updated_at")
@@ -38,6 +46,10 @@ class RoomsController < ApplicationController
   end
   
   def destroy
+    expire_action(:controller => 'rooms', :action => 'index')
+    expire_action(:controller => 'rooms', :action => 'oldest')
+    expire_action(:controller => 'rooms', :action => 'recent')
+    expire_action(:controller => 'rooms', :action => 'mostUser')
     Room.find(params[:id]).destroy
     @user = current_user
     @delete_id = @user.room_id

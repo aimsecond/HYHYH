@@ -35,6 +35,10 @@ class UsersController < ApplicationController
 	end
 	
 	def join
+		expire_action(:controller => 'rooms', :action => 'index')
+    expire_action(:controller => 'rooms', :action => 'oldest')
+    expire_action(:controller => 'rooms', :action => 'recent')
+    expire_action(:controller => 'rooms', :action => 'mostUser')
 	  @user = current_user
 	  parameter = params[:search]
 		if Room.exists?(id: parameter)
@@ -48,6 +52,10 @@ class UsersController < ApplicationController
 	end
 	
 	def exit
+		expire_action(:controller => 'rooms', :action => 'index')
+    expire_action(:controller => 'rooms', :action => 'oldest')
+    expire_action(:controller => 'rooms', :action => 'recent')
+    expire_action(:controller => 'rooms', :action => 'mostUser')
 		@user = current_user
 		exit_room_id = @user.room_id
 		@user.update_attribute('room_id', nil)

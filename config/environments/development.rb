@@ -63,4 +63,5 @@ Rails.application.configure do
   
   # caching
   config.action_controller.perform_caching = true
+  
 end
