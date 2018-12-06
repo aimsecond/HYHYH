@@ -1,5 +1,5 @@
 class PlaylistsController < ApplicationController
-  caches_action :index, :recent, :mostPlayed
+  caches_action :index, :recent, :mostPlayed, :cache_path => Proc.new{params[:page]}
   
   def index
     @playlists = Playlist.all.paginate(:page => params[:page], :per_page => 6)

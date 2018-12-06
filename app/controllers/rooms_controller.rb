@@ -1,8 +1,8 @@
 class RoomsController < ApplicationController
  
   skip_before_action :verify_authenticity_token, :except => []
-  caches_action :index, :oldest, :recent, :mostUser
-  
+  caches_action :index, :oldest, :recent, :mostUser, :cache_path => Proc.new{params[:page]}
+    
   def new
     @room = Room.new if stale?(User.all)
   end
