@@ -1,4 +1,8 @@
 class PlaylistsController < ApplicationController
+  caches_action :index, expires_in: 5.minute
+  caches_action :mostPlayed, expires_in: 15.minute
+  caches_action :recent, expires_in: 1.minute
+
   def index
     @playlists = Playlist.all
   end

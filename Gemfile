@@ -74,3 +74,6 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # get video title for youtube video
 gem 'video_info'
+
+# Caching
+gem 'actionpack-action_caching'

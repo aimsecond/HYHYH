@@ -1,6 +1,10 @@
 class RoomsController < ApplicationController
   skip_before_action :verify_authenticity_token, :except => []
 
+  caches_action :index, expires_in: 5.minute
+  caches_action :oldest, expires_in: 10.hour
+  caches_action :mostUser, expires_in: 5.minute
+
   def new
     @room = Room.new
   end
