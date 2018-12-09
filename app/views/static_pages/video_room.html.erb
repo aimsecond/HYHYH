@@ -39,60 +39,63 @@
     </div>
 
 
-    <ul id="playlist">
-        <div class="vid-item" onClick="setSrc(1);" src=<%=@room.link_1 %>>
-            <div class="thumb">
-                <img src=<%=get_thumbnail(@room.link_1)%> alt="" />
-            </div>
-            <div class="desc">
-                <%= get_title(@room.link_1) %>
-            </div>
-        </div>
+	<ul id="playlist">
+	<% cache @room do %>
+		<div class="vid-item" onClick="setSrc(1);" src=<%=@room.link_1 %>>
+			<div class="thumb">
+				<img src=<%=get_thumbnail(@room.link_1)%> alt="" />
+			</div>
+			<div class="desc">
+				<%= get_title(@room.link_1) %>
+			</div>
+		</div>
 
-        <% unless @room.link_2.to_s.empty? %>
-        <div class="vid-item" onClick="setSrc(2);" src=<%=@room.link_2 %>>
-            <div class="thumb">
-                <img src=<%=get_thumbnail(@room.link_2)%> alt="" />
-            </div>
-            <div class="desc">
-                <%= get_title(@room.link_2) %>
-            </div>
-        </div>
-        <% end %>
+		<% unless @room.link_2.to_s.empty? %>
+			<div class="vid-item" onClick="setSrc(2);" src=<%=@room.link_2 %>>
+				<div class="thumb">
+					<img src=<%=get_thumbnail(@room.link_2)%> alt="" />
+				</div>
+				<div class="desc">
+					<%= get_title(@room.link_2) %>
+				</div>
+			</div>
+		<% end %>
 
-        <% unless @room.link_3.to_s.empty? %>
-        <div class="vid-item" onClick="setSrc(3);" src=<%=@room.link_3 %>>
-            <div class="thumb">
-                <img src=<%=get_thumbnail(@room.link_3)%> alt="" />
-            </div>
-            <div class="desc">
-                <%= get_title(@room.link_3) %>
-            </div>
-        </div>
-        <% end %>
+		<% unless @room.link_3.to_s.empty? %>
+			<div class="vid-item" onClick="setSrc(3);" src=<%=@room.link_3 %>>
+				<div class="thumb">
+					<img src=<%=get_thumbnail(@room.link_3)%> alt="" />
+				</div>
+				<div class="desc">
+					<%= get_title(@room.link_3) %>
+				</div>
+			</div>
+		<% end %>
 
-        <% unless @room.link_4.to_s.empty? %>
-        <div class="vid-item" onClick="setSrc(4);" src=<%=@room.link_4 %>>
-            <div class="thumb">
-                <img src=<%=get_thumbnail(@room.link_4)%> alt="" />
-            </div>
-            <div class="desc">
-                <%= get_title(@room.link_4) %>
-            </div>
-        </div>
-        <% end %>
+		<% unless @room.link_4.to_s.empty? %>
+			<div class="vid-item" onClick="setSrc(4);" src=<%=@room.link_4 %>>
+				<div class="thumb">
+					<img src=<%=get_thumbnail(@room.link_4)%> alt="" />
+				</div>
+				<div class="desc">
+					<%= get_title(@room.link_4) %>
+				</div>
+			</div>
+		<% end %>
 
-        <% unless @room.link_5.to_s.empty? %>
-        <div class="vid-item" onClick="setSrc(5);" src=<%=@room.link_5 %>>
-            <div class="thumb">
-                <img src=<%=get_thumbnail(@room.link_5)%> alt="" />
-            </div>
-            <div class="desc">
-                <%= get_title(@room.link_5) %>
-            </div>
-        </div>
-        <% end %>
-    </ul>
+		<% unless @room.link_5.to_s.empty? %>
+			<div class="vid-item" onClick="setSrc(5);" src=<%=@room.link_5 %>>
+				<div class="thumb">
+					<img src=<%=get_thumbnail(@room.link_5)%> alt="" />
+				</div>
+				<div class="desc">
+					<%= get_title(@room.link_5) %>
+				</div>
+			</div>
+		<% end %>
+	<% end %>
+	</ul>
+
     </div>
     <div class="btn-group-vertical">
         <% if current_user.id == @room.host_id %>
