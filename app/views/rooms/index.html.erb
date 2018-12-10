@@ -19,6 +19,7 @@
                             <p>Room ID: <%= room.id %></p>
                             <!--use size method instead-->
                             <p>Active User: <%= room.users.size %></p>
+                            <%= link_to "Join", join_user_path(:id => current_user, :search => room.id), method: :post, class: "btn btn-primary btn-block btn-color" %>
                         </h4>
                         <img class="img-responsive" src=<%=get_thumbnail(room.link_1)%> alt="" />
                         <!--<img class="img-responsive" src="https://getuikit.com/v2/docs/images/placeholder_600x400.svg" alt="" />-->
